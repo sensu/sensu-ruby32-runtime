@@ -1,6 +1,6 @@
 FROM alpine:3.14.1
 
-ARG RUBY_VERSION=2.4.4
+ARG RUBY_VERSION=3.2.0
 ARG ASSET_VERSION=local_build
 
 RUN apk --no-cache add build-base gmp-dev zlib-dev gdbm-dev db-dev readline-dev libffi-dev coreutils yaml-dev linux-headers autoconf
