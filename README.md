@@ -1,5 +1,4 @@
-# Sensu Go Ruby Runtime Assets
-[![Build Status](https://travis-ci.org/sensu/sensu-ruby-runtime.svg?branch=master)](https://travis-ci.org/sensu/sensu-ruby-runtime)
+# Sensu Go Ruby 3.2 Runtime Assets
 
 This project provides [Sensu Go Assets][sensu-assets] containing portable Ruby
 runtimes (for various platforms), based on the excellent [ruby-install project
@@ -11,27 +10,20 @@ systems running the new Sensu Go Agent via the new Sensu's new Asset framework
 (i.e. avoiding solutions that would require a Ruby runtime to be redundantly
 packaged with every ruby-based plugin).
 
-This same project may be used to build Sensu Assets for Ruby-based plugins via
-[`bundler`][bundler] or other similar tools. We'll share more information on
-building Ruby-based assets with third-party gem depdencies using Bundler soon;
-in the interim, please review the instructions below for more information on
-how to get started with this project.
-
 [sensu-assets]: https://docs.sensu.io/sensu-go/5.1/reference/assets/
 [ruby-install]: https://github.com/postmodern/ruby-install
 [sensu-plugins]: https://github.com/sensu-plugins/
-[bundler]: https://bundler.io
 
 ## Platform Coverage:
- Currently this repository only supports a subset of Linux distribution by making use of Docker containers to build and test.
- If you would like extend the coverage, please take a look at the Github Action integration and associated build scripts. We're happy to take pull requests that extending the platform coverage. Here's the current platform matrix that we are testing for as of the 0.1 release:
+
+Currently this repository only supports a subset of Linux distribution by making use of Docker containers to build and test.
+If you would like extend the coverage, please take a look at the Github Action integration and associated build scripts. We're happy to take pull requests that extending the platform coverage. Here's the current platform matrix that we are testing for:
 
 | Asset Platform | Tested Operating Systems Docker Images |
 |:---------------|:-------------------------|
 |  alpine  (based on alpine:3.8)   | Alpine(3, 3.8, latest)                                      |
-|  centos7  (based on centos:7)     | Centos(7,8), Debian(8, 9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04)     |
 |  centos8 (based on centos:8)     | Centos(8), Debian(10), Ubuntu(20.04)  |
-|  debian  (based on debian:9)     | Debian(8, 9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04), Centos(7,8)    |
+|  debian  (based on debian:9)     | Debian(9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04), Centos(7,8)    |
 |  amnz1   (based on amazonlinux:1)     | Debian(8, 9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04), Centos(7,8)    |
 |  amnz2   (based on amazonlinux:2)     | Debian(10), Ubuntu(18.04, 20.04), Centos(8)    |
 
@@ -47,8 +39,8 @@ Please note the following instructions:
    a local_build Sensu Go Asset.
 
    ```
-   $ docker build --build-arg "RUBY_VERSION=2.4.4" -t sensu-ruby-runtime:2.4.4-alpine -f Dockerfile.alpine .
-   $ docker build --build-arg "RUBY_VERSION=2.4.4" -t sensu-ruby-runtime:2.4.4-debian -f Dockerfile.debian .
+   $ docker build --build-arg "RUBY_VERSION=3.2.0" -t sensu-ruby-runtime:3.2.0-alpine -f Dockerfile.alpine .
+   $ docker build --build-arg "RUBY_VERSION=3.2.0" -t sensu-ruby-runtime:3.2.0-debian -f Dockerfile.debian .
    ```
 
 2. Extract your new sensu-ruby asset, and get the SHA-512 hash for your
@@ -56,8 +48,8 @@ Please note the following instructions:
 
    ```
    $ mkdir assets
-   $ docker run -v "$PWD/assets:/assets" sensu-ruby-runtime:2.4.4-debian cp /assets/sensu-ruby-runtime_2.4.4_debian_linux_amd64.tar.gz /assets/
-   $ shasum -a 512 assets/sensu-ruby-runtime_2.4.4_debian_linux_amd64.tar.gz
+   $ docker run -v "$PWD/assets:/tmp/assets" sensu-ruby-runtime:3.2.0-debian cp /assets/sensu-ruby-runtime_3.2.0_debian_linux_amd64.tar.gz /tmp/assets/
+   $ shasum -a 512 assets/sensu-ruby-runtime_3.2.0_debian_linux_amd64.tar.gz
    ```
 
 3. Put that asset somewhere that your Sensu agent can fetch it. Perhaps add it to the Bonsai asset index!
@@ -66,7 +58,7 @@ Please note the following instructions:
 
 3. Create an asset resource in Sensu Go.
 
-   First, create a configuration file called `sensu-ruby-runtime-2.4.4-debian.json` with
+   First, create a configuration file called `sensu-ruby-runtime-3.2.0-debian.json` with
    the following contents:
 
    ```
@@ -74,13 +66,13 @@ Please note the following instructions:
      "type": "Asset",
      "api_version": "core/v2",
      "metadata": {
-       "name": "sensu-ruby-runtime-2.4.4-debian",
+       "name": "sensu-ruby-runtime-3.2.0-debian",
        "namespace": "default",
        "labels": {},
        "annotations": {}
      },
      "spec": {
-       "url": "http://your-asset-server-here/assets/sensu-ruby-runtime-2.4.4-debian.tar.gz",
+       "url": "http://your-asset-server-here/assets/sensu-ruby-runtime-3.2.0-debian.tar.gz",
        "sha512": "4f926bf4328fbad2b9cac873d117f771914f4b837c9c85584c38ccf55a3ef3c2e8d154812246e5dda4a87450576b2c58ad9ab40c9e2edc31b288d066b195b21b",
        "filters": [
          "entity.system.os == 'linux'",
@@ -94,7 +86,7 @@ Please note the following instructions:
    Then create the asset via:
 
    ```
-   $ sensuctl create -f sensu-ruby-runtime-2.4.4-debian.json
+   $ sensuctl create -f sensu-ruby-runtime-3.2.0-debian.json
    ```
 
 4. Create a second asset containing a Ruby script.
@@ -134,7 +126,7 @@ Please note the following instructions:
      },
      "spec": {
        "command": "helloworld.rb",
-       "runtime_assets": ["sensu-ruby-runtime-2.4.4-debian", "helloworld-v0.1"],
+       "runtime_assets": ["sensu-ruby-runtime-3.2.0-debian", "helloworld-v0.1"],
        "publish": true,
        "interval": 10,
        "subscriptions": ["docker"]
