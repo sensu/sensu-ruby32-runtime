@@ -1,5 +1,4 @@
-# Sensu Go Ruby Runtime Assets
-[![Build Status](https://travis-ci.org/sensu/sensu-ruby-runtime.svg?branch=master)](https://travis-ci.org/sensu/sensu-ruby-runtime)
+# Sensu Go Ruby 3.2 Runtime Assets
 
 This project provides [Sensu Go Assets][sensu-assets] containing portable Ruby
 runtimes (for various platforms), based on the excellent [ruby-install project
@@ -11,27 +10,20 @@ systems running the new Sensu Go Agent via the new Sensu's new Asset framework
 (i.e. avoiding solutions that would require a Ruby runtime to be redundantly
 packaged with every ruby-based plugin).
 
-This same project may be used to build Sensu Assets for Ruby-based plugins via
-[`bundler`][bundler] or other similar tools. We'll share more information on
-building Ruby-based assets with third-party gem depdencies using Bundler soon;
-in the interim, please review the instructions below for more information on
-how to get started with this project.
-
 [sensu-assets]: https://docs.sensu.io/sensu-go/5.1/reference/assets/
 [ruby-install]: https://github.com/postmodern/ruby-install
 [sensu-plugins]: https://github.com/sensu-plugins/
-[bundler]: https://bundler.io
 
 ## Platform Coverage:
- Currently this repository only supports a subset of Linux distribution by making use of Docker containers to build and test.
- If you would like extend the coverage, please take a look at the Github Action integration and associated build scripts. We're happy to take pull requests that extending the platform coverage. Here's the current platform matrix that we are testing for as of the 0.1 release:
+
+Currently this repository only supports a subset of Linux distribution by making use of Docker containers to build and test.
+If you would like extend the coverage, please take a look at the Github Action integration and associated build scripts. We're happy to take pull requests that extending the platform coverage. Here's the current platform matrix that we are testing for:
 
 | Asset Platform | Tested Operating Systems Docker Images |
 |:---------------|:-------------------------|
 |  alpine  (based on alpine:3.8)   | Alpine(3, 3.8, latest)                                      |
-|  centos7  (based on centos:7)     | Centos(7,8), Debian(8, 9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04)     |
 |  centos8 (based on centos:8)     | Centos(8), Debian(10), Ubuntu(20.04)  |
-|  debian  (based on debian:9)     | Debian(8, 9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04), Centos(7,8)    |
+|  debian  (based on debian:9)     | Debian(9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04), Centos(7,8)    |
 |  amnz1   (based on amazonlinux:1)     | Debian(8, 9, 10), Ubuntu(14.04, 16.04, 18.04, 20.04), Centos(7,8)    |
 |  amnz2   (based on amazonlinux:2)     | Debian(10), Ubuntu(18.04, 20.04), Centos(8)    |
 
