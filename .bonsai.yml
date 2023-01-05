@@ -1,10 +1,10 @@
 ---
-description: "#{repo}"
+description: "sensu-ruby-runtime"
 builds:
 - platform: "alpine"
   arch: "amd64"
-  asset_filename: "#{repo}_#{version}_ruby-3.2.0_alpine_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  asset_filename: "sensu-ruby-runtime_#{version}_ruby-3.2.0_alpine_linux_amd64.tar.gz"
+  sha_filename: "sensu-ruby-runtime_#{version}_sha512-checksums.txt"
   filter:
   -  "entity.system.os == 'linux'"
   -  "entity.system.arch == 'amd64'"
@@ -12,16 +12,16 @@ builds:
   -  "entity.system.platform_version.split('.')[0] == '3'"
 - platform: "debian"
   arch: "amd64"
-  asset_filename: "#{repo}_#{version}_ruby-3.2.0_debian_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  asset_filename: "sensu-ruby-runtime_#{version}_ruby-3.2.0_debian_linux_amd64.tar.gz"
+  sha_filename: "sensu-ruby-runtime_#{version}_sha512-checksums.txt"
   filter:
   -  "entity.system.os == 'linux'"
   -  "entity.system.arch == 'amd64'"
   -  "entity.system.platform_family == 'debian'"
 - platform: "centos8"
   arch: "amd64"
-  asset_filename: "#{repo}_#{version}_ruby-3.2.0_centos8_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  asset_filename: "sensu-ruby-runtime_#{version}_ruby-3.2.0_centos8_linux_amd64.tar.gz"
+  sha_filename: "sensu-ruby-runtime_#{version}_sha512-checksums.txt"
   filter:
   -  "entity.system.os == 'linux'"
   -  "entity.system.arch == 'amd64'"
@@ -30,8 +30,8 @@ builds:
   -  "parseInt(entity.system.platform_version.split('.')[0]) == 8"
 - platform: "amzn1"
   arch: "amd64"
-  asset_filename: "#{repo}_#{version}_ruby-3.2.0_amzn1_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  asset_filename: "sensu-ruby-runtime_#{version}_ruby-3.2.0_amzn1_linux_amd64.tar.gz"
+  sha_filename: "sensu-ruby-runtime_#{version}_sha512-checksums.txt"
   filter:
   -  "entity.system.os == 'linux'"
   -  "entity.system.arch == 'amd64'"
@@ -39,8 +39,8 @@ builds:
   -  "entity.system.platform_version.split('.')[0] == '2018'"
 - platform: "amzn2"
   arch: "amd64"
-  asset_filename: "#{repo}_#{version}_ruby-3.2.0_amzn2_linux_amd64.tar.gz"
-  sha_filename: "#{repo}_#{version}_sha512-checksums.txt"
+  asset_filename: "sensu-ruby-runtime_#{version}_ruby-3.2.0_amzn2_linux_amd64.tar.gz"
+  sha_filename: "sensu-ruby-runtime_#{version}_sha512-checksums.txt"
   filter:
   -  "entity.system.os == 'linux'"
   -  "entity.system.arch == 'amd64'"
