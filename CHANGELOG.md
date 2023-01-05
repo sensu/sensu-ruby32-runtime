@@ -7,35 +7,12 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
-## [0.2.1] - 2020-08-24
-
-### Changed
-- Updated alpine image to alpine 3.14.1
-
-## [0.2.0] - 2020-07-23
-
-### Changed
-- Added centos6 image back
-- Updated alpine image to alpine 3.14
-
-## [0.0.11] - 2020-09-17
-
-### Added
-- Add Centos8 build
+## [0.1.1] - 2023-01-05
 
 ### Fixed
-- add libc6-compat libraries to Alpine builds
-- add sys-filesystem gem based test 
+- Bonsai configuration
 
-## [0.0.4] - 2019-01-16
-
-### Fixed
-- Debian asset platform name (static, removed os-release detection)
-
-### Added
-- CentOS and Debian Bonsai assets
-
-## [0.0.3] - 2019-01-16
+## [0.1.0] - 2023-01-04
 
 ### Added
 - Initial release
